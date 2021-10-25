@@ -3,6 +3,7 @@ package hu.petrik;
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
+        Kepregeny szuperhosok = new Kepregeny("szuperhos.txt");
+        System.out.println(szuperhosok);
     }
 }

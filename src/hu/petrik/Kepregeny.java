@@ -4,16 +4,19 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
+
 
 public class Kepregeny {
-    private static List<Szuperhos>szhosok = new ArrayList();
-
-
-
-    public static void beolvas(String fajlNev){
-        try{
+    private  List<Szuperhos>szhosLista;
+    public Kepregeny(Szuperhos[] szhosTomb){
+        this.szhosLista = new ArrayList<>();
+        this.szhosLista.addAll(Arrays.asList(szhosTomb));
+    }
+    public Kepregeny(String fajlNev){
+        this.szhosLista = new ArrayList<>();
+        try {
             FileReader fr = new FileReader(fajlNev);
             BufferedReader br = new BufferedReader(fr);
             String sor = br.readLine();
@@ -25,7 +28,7 @@ public class Kepregeny {
                     for (int i = 0; i < hanyszorKeszit; i++) {
                         obj.kutyutKeszit();
                     }
-                    szhosok.add(obj);
+                    szhosLista.add(obj);
                 }
                 else{
                     Batman obj = new Batman();
@@ -33,7 +36,7 @@ public class Kepregeny {
                     for (int i = 0; i < hanyszorKeszit; i++) {
                         obj.kutyutKeszit();
                     }
-                    szhosok.add(obj);
+                    szhosLista.add(obj);
                 }
                 sor = br.readLine();
 
@@ -45,11 +48,15 @@ public class Kepregeny {
         }catch (IOException ex){
             System.out.println(ex.getMessage());
         }
+    }
 
-    }
-    public static void kiir(){
-        for (Szuperhos item:szhosok) {
-            System.out.println(item);
+    @Override
+    public String toString() {
+        String s = "";
+        for (Szuperhos szuperhos:this.szhosLista) {
+           s+= szuperhos +"\n";
         }
+        return s;
     }
+
 }
